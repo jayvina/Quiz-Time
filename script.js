@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', ()  => {
     function showQuestion(){
         nextBtn.classList.add('hidden');
         questionText.textContent = questions[currentQuestionIndex].question;
-        choicesList.innerHTML = "" //clear previous choices
+        choicesList.innerHTML = "" 
         questions[currentQuestionIndex].choices.forEach(choice => {
             const li = document.createElement('li')
             li.textContent = choice
