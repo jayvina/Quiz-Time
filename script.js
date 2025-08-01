@@ -26,6 +26,31 @@ document.addEventListener('DOMContentLoaded', ()  => {
             choices: ["Charles Dickens", "Jane Austen", "William Shakespeare", "Mark Twain"],
             answer:"William Shakespeare",
         },
+           {
+            question: "What is the largest mammal?",
+            choices: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+            answer: "Blue Whale",
+        },
+           {
+            question: "Which language is used to style web pages?",
+            choices: ["HTML", "Python", "CSS", "Java"],
+            answer: "CSS",
+        },
+           {
+           question: "Which is the smallest prime number?",
+            choices: ["0", "1", "2", "3"],
+            answer: "2",
+        },
+           {
+             question: "What does HTTP stand for?",
+            choices: ["HyperText Transfer Protocol", "HighText Transfer Protocol", "HyperText Transmission Process", "Hyper Transfer Text Protocol"],
+            answer: "HyperText Transfer Protocol",
+        },
+           {
+             question: "In which country were the Olympic Games invented?",
+        choices: ["Italy", "Greece", "USA", "France"],
+        answer: "Greece",
+        },
     ];
 
 
@@ -53,16 +78,23 @@ document.addEventListener('DOMContentLoaded', ()  => {
     })
 
     function startQuiz(){
+        shuffleQuestions(questions);
         startBtn.classList.add('hidden');
         resultContainer.classList.add('hidden');
         questionContainer.classList.remove('hidden')
+
+        score = 0;
+        currentQuestionIndex = 0;
+
+        liveScore.textContent = `Score: ${score}`
+        liveScore.classList.remove('hidden')
         showQuestion();
     }
 
     function showQuestion(){
         nextBtn.classList.add('hidden');
         questionText.textContent = questions[currentQuestionIndex].question;
-        choicesList.innerHTML = "" 
+        choicesList.innerHTML = "" //clear previous choices
         questions[currentQuestionIndex].choices.forEach(choice => {
             const li = document.createElement('li')
             li.textContent = choice
@@ -84,5 +116,12 @@ document.addEventListener('DOMContentLoaded', ()  => {
         questionContainer.classList.add('hidden')
         resultContainer.classList.remove('hidden')
         scoreDisplay.textContent = `${score} out of ${questions.length}`
+    }
+
+    function shuffleQuestions(array){
+        for(let i = array.length-1; i>0; i--){
+            const j = Math.floor(Math.random()*(i+1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
     }
 });
